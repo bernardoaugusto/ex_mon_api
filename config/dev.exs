@@ -4,7 +4,7 @@ use Mix.Config
 config :ex_mon, ExMon.Repo,
   username: "postgres",
   password: "postgres",
-  database: "ex_mon_dev",
+  database: "ex_mon",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10

@@ -1,0 +1,1 @@
+CREATE DATABASE ex_mon;
