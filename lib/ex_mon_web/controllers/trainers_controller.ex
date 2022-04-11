@@ -1,6 +1,8 @@
 defmodule ExMonWeb.TrainersController do
   use ExMonWeb, :controller
 
+  action_fallback ExMonWeb.FallbackController
+
   @spec create(any, :invalid | %{optional(:__struct__) => none, optional(atom | binary) => any}) ::
           any
   def create(conn, params) do
@@ -10,4 +12,6 @@ defmodule ExMonWeb.TrainersController do
   defp handle_response({:ok, trainer}, conn) do
     conn |> put_status(:created) |> render("create.json", trainer: trainer)
   end
+
+  defp handle_response({:error, _changeset} = error, _conn), do: error
 end
