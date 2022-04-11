@@ -12,7 +12,12 @@ defmodule ExMon.Trainer do
   end
 
   @required_params [:name, :password]
-  def changeset(params) do
+
+  def build(params) do
+    params |> changeset() |> apply_action(:insert)
+  end
+
+  defp changeset(params) do
     %__MODULE__{}
     |> cast(params, @required_params)
     |> validate_required(@required_params)
