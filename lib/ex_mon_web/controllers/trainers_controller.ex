@@ -13,6 +13,10 @@ defmodule ExMonWeb.TrainersController do
     id |> ExMon.fetch_trainer() |> handle_response(conn, "show.json", :ok)
   end
 
+  def update(conn, params) do
+    params |> ExMon.update_trainer() |> handle_response(conn, "update.json", :ok)
+  end
+
   def delete(conn, %{"id" => id}) do
     id |> ExMon.delete_trainer() |> handle_delete(conn)
   end

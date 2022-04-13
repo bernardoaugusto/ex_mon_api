@@ -17,8 +17,8 @@ defmodule ExMon.Trainer do
     params |> changeset() |> apply_action(:insert)
   end
 
-  defp changeset(params), do: create_changeset(%__MODULE__{}, params)
-  defp changeset(trainer, params), do: create_changeset(trainer, params)
+  def changeset(params), do: create_changeset(%__MODULE__{}, params)
+  def changeset(trainer, params), do: create_changeset(trainer, params)
 
   defp create_changeset(module_ou_trainer, params) do
     module_ou_trainer
