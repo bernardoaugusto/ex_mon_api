@@ -17,8 +17,11 @@ defmodule ExMon.Trainer do
     params |> changeset() |> apply_action(:insert)
   end
 
-  defp changeset(params) do
-    %__MODULE__{}
+  defp changeset(params), do: create_changeset(%__MODULE__{}, params)
+  defp changeset(trainer, params), do: create_changeset(trainer, params)
+
+  defp create_changeset(module_ou_trainer, params) do
+    module_ou_trainer
     |> cast(params, @required_params)
     |> validate_required(@required_params)
     |> validate_length(:password, min: 6)
