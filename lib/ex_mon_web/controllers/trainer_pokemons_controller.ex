@@ -1,7 +1,7 @@
 defmodule ExMonWeb.TrainerPokemonsController do
   use ExMonWeb, :controller
 
-  action_fallback ExMonWeb.FallbackController
+  action_fallback(ExMonWeb.FallbackController)
 
   @spec create(any, :invalid | %{optional(:__struct__) => none, optional(atom | binary) => any}) ::
           any
@@ -11,6 +11,10 @@ defmodule ExMonWeb.TrainerPokemonsController do
 
   def delete(conn, %{"id" => id}) do
     id |> ExMon.delete_trainer_pokemon() |> handle_delete(conn)
+  end
+
+  def show(conn, %{"id" => id}) do
+    id |> ExMon.fetch_trainer_pokemon() |> handle_response(conn, "show.json", :ok)
   end
 
   defp handle_delete({:ok, _pokemon}, conn) do
